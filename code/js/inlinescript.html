@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="nl">
+<head>
+	<meta charset="UTF-8">
+	<title>Inline scripting</title>
+	<style>
+		section { outline: 1px solid red}
+		section:last-child { outline-color:green;
+			-moz-column-width: 200px;
+			-webkit-column-width: 200px;
+			column-width: 200px;
+			-moz-column-gap:2em;
+			-webkit-column-gap:2em;
+			column-gap:2em;}
+		section:last-child h1 { column-span: all;}
+	</style>
+</head>
+<body>
+	<nav>navigation</nav>
+	<article>
+		<h1>Inline scripting is evil</h1>
+		<section>
+			<h1>inline script</h1>
+			<ul>
+				<li>
+					<a href="#" onClick="alert('hello world');return false;">inline alert</a>
+				</li>
+				<li>
+					<a href="#" onClick="alert('hello world');return false;">inline alert</a>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<h1>inline function call</h1>
+			<ul>
+				<li>
+					<a href="#" onClick="inlinecall(this);" id="inlinecall">inline call to function</a>
+				</li>
+				<li>
+					<a href="#" onClick="inlinecall(this);" id="inlinecall2">inline call to function no. 2</a>
+				</li>
+			</ul>
+		</section>
+		<section>
+			<h1>Unobtrusive javascript</h1>
+			<ul id="uj">
+				<li>
+					<a href="#">Unobtrusive link</a>
+				</li>
+				<li>
+					<a href="#">Unobtrusive link 2</a>
+				</li>
+			</ul>
+		</section>
+		<!--section>
+			<h1>Event delegation</h1>
+			<ul id="ed">
+				<li>
+					<a href="#">Unobtrusive link</a>
+				</li>
+				<li>
+					<a href="#">Unobtrusive link 2</a>
+				</li>
+			</ul>
+		</section-->
+		<!--div class="body">
+		<p>This site now runs on <a href="http://nanoc.stoneship.org/">nanoc</a>, a static site generator running on Ruby. The old Wordpress install went out the window and I only migrated two posts; the ones that people are likely to land on via search engines. I chose a static site because that's what all the cool kids have. Besides that I was pretty much done with showing my latest tweet, etc. Just go to <a href="http://www.teitter.com/roy">Twitter</a> if you want to know. A static site also saves me from any possible security issues (it's all just HTML) and updates to Wordpress and its plugins.</p>
+		<p>For syntax highlighting I use the <a href="http://coderay.rubychan.de/">CodeRay</a> gem, based on instruction in <a href="http://austinbirch.co.uk/posts/syntax_highlighting_in_nanoc.html">this post</a> and some Googling. This site is open source, so if you want you may just clone it at <a href="https://github.com/roytomeij/roytomeij.com">GitHub</a>.</p>
+		<p>As for actual blogging: we'll see how that goes...</p>
+		</div-->
+		<section id="roy">
+			<h1>test header</h1>
+			<p>This site now runs on <a href="http://nanoc.stoneship.org/">nanoc</a>, a static site generator running on Ruby. The old Wordpress install went out the window and I only migrated two posts; the ones that people are likely to land on via search engines. I chose a static site because that's what all the cool kids have. Besides that I was pretty much done with showing my latest tweet, etc. Just go to <a href="http://www.teitter.com/roy">Twitter</a> if you want to know. A static site also saves me from any possible security issues (it's all just HTML) and updates to Wordpress and its plugins.</p>
+			<p>For syntax highlighting I use the <a href="http://coderay.rubychan.de/">CodeRay</a> gem, based on instruction in <a href="http://austinbirch.co.uk/posts/syntax_highlighting_in_nanoc.html">this post</a> and some Googling. This site is open source, so if you want you may just clone it at <a href="https://github.com/roytomeij/roytomeij.com">GitHub</a>.</p>
+			<p>As for actual blogging: we'll see how that goes...</p>
+		</section>
+	</article>
+	
+	<script>
+		function inlinecall(x){
+			var y = x.innerHTML;
+			alert(y);
+			return false;
+		};
+		var uj = function(){
+			var links = document.getElementById('uj').getElementsByTagName('a');
+			var len = links.length;
+			for ( var i = -1; ++i < len;){
+				var t = links[i],
+					txt = t.innerHTML;
+				console.log('boe '+txt);
+				//t.onClick( ujaction(txt) );
+			}
+		}();
+		var ujaction = function(t){
+			alert(t);
+			return false;
+		};
+		/*
+		var ed = function(){
+			var s = document.getElementById('ed');
+			s.onclick(console.log('yay'))
+		}();	*/
+	
+	</script>
+</body>
+</html>

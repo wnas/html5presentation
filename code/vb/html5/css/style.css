@@ -1,0 +1,89 @@
+/*
+	styles for schijndel.nl
+*/
+body {
+	font-family:helvetica,arial,sans-serif;
+	font-size:.625em;
+}
+/* reset shizzle */
+h1,h2,h3 {
+	font-size:1em;
+}
+a { text-decoration:none;color:#000}
+h1,h2,h3,body,article,section,p,time,ul,li,div,span {padding:0;margin:0}
+li { list-style:none;}
+
+header > hgroup > h1 { float:left;width:20%;height:100px;}
+section article > h1 { border-bottom:1px solid #000;color:#682B56;font-size:120%;padding:.4em;}
+
+section article > img  { float:left;clear:left;}
+
+.home section article {
+	float:left;width:46%;padding:2%;
+}
+/* time for some media queries */
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+	/* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+	/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+	/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+	/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+	/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1440px) {
+	/* Styles */
+	.home section article { width:80%;padding:2% 5%;background-color:red;}
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+	/* Styles */
+	.home section article { width:40%;padding:2% 5%;background-color:green;}
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+	/* Styles */
+}
+

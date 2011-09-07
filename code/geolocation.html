@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Geolocation</title>
+	<script src="js/modernizer.js"></script>
+	<style>
+		body { font-family:helvetica, sans-serif;font-size:1em;width:30em;margin:0 auto;}
+		em, strong { font-size:50%;display:block}
+	</style>
+</head>
+<body>
+	<article>
+		<h1>Geolocation</h1>
+		<dl>
+			<dt>chrome</dt>
+			<dd>51.7015494 | 5.3350122 | 30</dd>
+			<dt>canary</dt>
+			<dd>51.7015382 | 5.3350462 | 30</dd>
+			<dt>safari</dt>
+			<dd>51.701927685 | 5.33481651 | 80</dd>
+			<dt>opera</dt>
+			<dd>51.7015449 | 5.335038 | 30</dd>
+			<dt>firefox</dt>
+			<dd>51.7015423 | 5.3350187 | 30</dd>
+		</dl>
+			<!--pre><code>
+var get_location = function() {
+	if (Modernizr.geolocation) {
+		navigator.geolocation.getCurrentPosition(show_map,handle_error);
+	} else {
+		$('h1').after('&#60;p&#62;sorry, browsers says NO&#60;/p&#62;')
+	}
+}();
+
+function show_map(position) {
+	var latitude = position.coords.latitude,
+		longitude = position.coords.longitude,
+		acc = position.coords.accuracy;
+
+	$('h1').after('&#60;p&#62;'+ latitude+' | '+longitude+' | '+acc+'&#60;/p&#62;');
+}
+
+function handle_error(err) {
+	$('h1').after('&#60;p&#62;'+err.code+' | '+err.message+'&#60;/p&#62;');
+}
+</code></pre-->
+	</article>
+	<script src="js/jquery-1.6.min.js"></script>
+	<script>
+		var get_location = function() {
+			if (Modernizr.geolocation) {
+				navigator.geolocation.getCurrentPosition(show_map,handle_error);
+			} else {
+				$('h1').after('<p>sorry, browsers says NO</p>')
+			}
+		}();
+		
+		function show_map(position) {
+			var latitude = position.coords.latitude,
+				longitude = position.coords.longitude,
+				acc = position.coords.accuracy;
+				url = 'http://nominatim.openstreetmap.org/reverse?format=json&lat='+latitude+'&lon='+longitude+'&zoom=18&addressdetails=1'
+				
+		//	$('h1').after('<p>'+ latitude+' | '+longitude+' | '+acc+'</p><div id="addr"></div>');
+			//$('#addr').load('http://api.geonames.org/extendedFindNearby?lat='+latitude+'&lng='+longitude+'&username=wnas');
+				//$('#addr').load('http://nominatim.openstreetmap.org/reverse?format=json&lat='+latitude+'&lon='+longitude+'&zoom=18&addressdetails=1');
+		//	var addr = $('#addr').load('http://nominatim.openstreetmap.org/reverse?format=json&lat='+latitude+'&lon='+longitude+'&zoom=18&addressdetails=1');
+			$.getJSON(url, function(data) {
+			  var items = [];
+
+			  $.each(data.address, function(key, val) {
+			    items.push('<li class="' + key + '">' + val + '</li>');
+			  });
+
+			  $('<ul/>', {
+			    'class': 'my-new-list',
+			    html: items.join('')
+			  }).appendTo('body');
+			});
+		}
+/*
+{
+	"place_id":"14793576",
+	"licence":"Data Copyright OpenStreetMap Contributors, Some Rights Reserved. CC-BY-SA 2.0.",
+	"osm_type":"way",
+	"osm_id":"6950633",
+	"lat":"51.7018388116032",
+	"lon":"5.33526044531686",
+	"display_name":"Wilhelminastraat, Rosmalen, 's-Hertogenbosch, Noord-Brabant, 5213AR, The Netherlands",
+	"address":{
+		"road":"Wilhelminastraat","suburb":"Rosmalen","city":"'s-Hertogenbosch","state":"Noord-Brabant","postcode":"5213AR","country":"The Netherlands","country_code":"nl"}}
+*/
+
+
+		function handle_error(err) {
+			$('h1').after('<p>'+err.code+' | '+err.message+'</p>');
+		}
+	</script>
+</body>
+</html>

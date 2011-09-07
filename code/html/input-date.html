@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HTML 5 - input[type=date]</title>
+	<script src="../js/modernizer.js"></script>
+	<style>
+		input[type=date]{
+			-webkit-appearance:textfield;
+			-webkit-outer-spin-button:none;
+			
+		}
+		input[type=date] div:last-child {
+			border:1px solid red;
+		}
+		input::-webkit-outer-spin-button {
+		/*	display:none; */
+		}
+	
+	</style>
+</head>
+<body>
+	<input type="date" id="date" value="2011-06-07">
+	<article>
+		<h1>geolocation across browsers</h1>
+		
+	<dl>
+		<dt>Firefox</dt>
+		<dd>52.1548654 | 5.3815679</dd>
+		<dt>Opera</dt>
+		<dd>52.1548767 | 5.3815818</dd>
+		<dt>Safari</dt>
+		<dd>52.15489375 | 5.38152074</dd>
+		
+	<script src="../js/jquery-1.6.min.js"></script>
+	<script>
+		$('input').each( function(){
+			var x = $(this).attr('type'),
+				y = getStyle('#date','-webkit-appearance');
+				//y = document.defaultView.getComputedStyle($(this)).getPropertyValue(styleProp)
+			console.log( x );
+			console.log(  );
+		});
+		
+		function getStyle(el,styleProp)
+		{
+			var x = $(el)[0];
+			console.log(x)
+			if (x.currentStyle){
+				var y = x.currentStyle[styleProp];
+				console.log('first '+y);
+			}
+			else if (window.getComputedStyle){
+				var y = document.defaultView.getComputedStyle(x).getPropertyValue(styleProp);
+				console.log('second '+y);
+			}
+			return y;
+		}
+		
+		var get_location = function() {
+		  if (Modernizr.geolocation) {
+		    navigator.geolocation.getCurrentPosition(show_map);
+		  } else {
+		    // no native support; maybe try Gears?
+		  }
+		}();
+		
+		function show_map(position) {
+		//	console.log('show map');
+		  var latitude = position.coords.latitude;
+		  var longitude = position.coords.longitude;
+			var acc = position.coords.accuracy;
+		console.log( latitude+' | '+longitude +' | '+acc)
+		$('body').append('<p>'+ latitude+' | '+longitude+' | '+acc+'</p>')
+		  // let's show a map or do something interesting!
+		}
+	</script>
+</body>
+</html>

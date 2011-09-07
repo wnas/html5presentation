@@ -1,0 +1,89 @@
+html5
+
+what is it all about?
+
+(http://www.flickr.com/photos/gilz99/811682315/sizes/z/in/photostream/)
+
+first a bit of history
+(http://www.flickr.com/photos/spyndle/2422552640/sizes/o/in/photostream/)
+
+html started as 'HTML tags' in 1991
+	20 tags
+	
+HTML 2.0
+	specification in 1995
+	(I started then)
+	
+HTML 3.2
+	januari 1997
+	
+HTML 4.0
+	december 1997
+	offered three flavors
+		strict
+		transitional
+		frameset
+	
+XHTML 1.0
+	januari 2000
+	xml syntax
+	lies, damn lies.
+	
+XHTML 1.1
+	march 2001
+	
+XHTML 2.0
+	.......
+	
+HTML5
+	HTML 4 +
+
+structure elements
+	
+section
+article
+aside
+hgroup
+header
+footer
+nav
+
+More
+
+video
+audio
+embed
+mark
+progress
+meter
+time
+ruby,rt and rp
+bdi
+wbr
+canvas
+command
+details
+datalist
+keygen
+output
+
+Input types
+
+tel
+search
+url
+email
+datetime
+date
+month
+week
+time
+datetime-local
+number
+range
+color
+
+Great, what can we do with them...
+
+Time for some code...
+	drumroll please
